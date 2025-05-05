@@ -1,0 +1,19 @@
+name: Dynamic Environment Deployment
+
+run-name: Deploy to ${{ github.event.inputs.environment }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name: Example Step
+        run: echo "Deploying to ${{ inputs.environment }} environment"
