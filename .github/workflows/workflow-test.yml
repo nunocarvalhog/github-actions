@@ -1,6 +1,6 @@
 name: Dynamic Environment Deployment
 
-run-name: Deploy to ${{ github.event.inputs.environment }}
+run-name: Deploy ${{ github.event.inputs.environment }}
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
     environment: ${{ github.event.inputs.environment }}
     steps:
       - name: Example Step
-        run: echo "Deploying to ${{ inputs.environment }} environment"
+        run: echo "Deploying ${{ inputs.environment }} environment"
       - name: Sleep 5 minutes
         run: sleep 300
       - name: The End
