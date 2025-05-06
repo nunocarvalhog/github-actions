@@ -26,7 +26,7 @@ jobs:
   deploy-canada:
     name: 🚀 Deploy to td-ca-1
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.app }}(prd:td-ca-1)
+    environment: ${{ github.event.inputs.app }}
     steps:
       - name: Example Step Canada
         run: echo "Deploying ${{ inputs.app }}"
@@ -39,7 +39,7 @@ jobs:
     name: 🚀 Deploy to td-eu-1
     runs-on: ubuntu-latest
     needs: deploy-canada
-    environment: ${{ github.event.inputs.app }}(prd:td-eu-1)
+    environment: ${{ github.event.inputs.app }}
     steps:
       - name: Example Step Europe
         run: echo "Deploying ${{ inputs.app }}"
@@ -52,7 +52,7 @@ jobs:
     name: 🚀 Deploy to td-us-1
     runs-on: ubuntu-latest
     needs: deploy-europe
-    environment: ${{ github.event.inputs.app }}(prd:td-us-1)
+    environment: ${{ github.event.inputs.app }}
     steps:
       - name: Example Step US
         run: echo "Deploying ${{ inputs.app }}"
