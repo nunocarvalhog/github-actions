@@ -10,6 +10,10 @@ on:
         required: true
         type: string
 
+concurrency:
+  group: deploy-${{ github.event.inputs.environment }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,3 +21,7 @@ jobs:
     steps:
       - name: Example Step
         run: echo "Deploying to ${{ inputs.environment }} environment"
+      - name: Sleep 5 minutes
+        run: sleep 300
+      - name: The End
+        run: echo "Ended"
