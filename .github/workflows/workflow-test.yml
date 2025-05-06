@@ -9,6 +9,14 @@ on:
         description: 'Environment to deploy'
         required: true
         type: string
+      app_version_id:
+        description: 'The app version id'
+        required: true
+        type: string
+      app_id:
+        description: 'The app version id'
+        required: true
+        type: string
 
 concurrency:
   group: deploy-${{ github.event.inputs.environment }}
