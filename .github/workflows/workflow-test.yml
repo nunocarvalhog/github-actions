@@ -1,12 +1,12 @@
-name: Dynamic Environment Deployment
+name: Deploy (PRD)
 
-run-name: Deploy ${{ github.event.inputs.environment }}
+run-name: Deploy ${{ github.event.inputs.app }} (PRD)
 
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to deploy'
+      app:
+        description: 'App to deploy'
         required: true
         type: string
       app_version_id:
@@ -19,19 +19,19 @@ on:
         type: string
 
 concurrency:
-  group: deploy-${{ github.event.inputs.environment }}
+  group: deploy-${{ github.event.inputs.app }}-prd
   cancel-in-progress: false
 
 jobs:
   deploy-canada:
     name: 🚀 Deploy to td-ca-1
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment }}
+    environment: ${{ github.event.inputs.app }}(prd:td-ca-1)
     steps:
       - name: Example Step Canada
-        run: echo "Deploying ${{ inputs.environment }} environment"
-      - name: Sleep 5 minutes
-        run: sleep 300
+        run: echo "Deploying ${{ inputs.app }}"
+      - name: Sleep 1 minute
+        run: sleep 60
       - name: The End
         run: echo "Ended"
 
@@ -39,12 +39,12 @@ jobs:
     name: 🚀 Deploy to td-eu-1
     runs-on: ubuntu-latest
     needs: deploy-canada
-    environment: ${{ github.event.inputs.environment }}
+    environment: ${{ github.event.inputs.app }}(prd:td-eu-1)
     steps:
       - name: Example Step Europe
-        run: echo "Deploying ${{ inputs.environment }} environment"
-      - name: Sleep 5 minutes
-        run: sleep 300
+        run: echo "Deploying ${{ inputs.app }}"
+      - name: Sleep 1 minute
+        run: sleep 60
       - name: The End
         run: echo "Ended"
 
@@ -52,11 +52,11 @@ jobs:
     name: 🚀 Deploy to td-us-1
     runs-on: ubuntu-latest
     needs: deploy-europe
-    environment: ${{ github.event.inputs.environment }}
+    environment: ${{ github.event.inputs.app }}(prd:td-us-1)
     steps:
       - name: Example Step US
-        run: echo "Deploying ${{ inputs.environment }} environment"
-      - name: Sleep 5 minutes
-        run: sleep 300
+        run: echo "Deploying ${{ inputs.app }}"
+      - name: Sleep 1 minute
+        run: sleep 60
       - name: The End
         run: echo "Ended"
